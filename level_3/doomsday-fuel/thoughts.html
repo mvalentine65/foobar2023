@@ -1,0 +1,55 @@
+<h2> 3.3 Doomsday Fuel </h2>
+
+<div class="prompt">
+  <p>Making fuel for the LAMBCHOP's reactor core is a tricky process because of the exotic matter involved. It starts as raw ore, then during processing, begins randomly changing between forms, eventually reaching a stable form. There may be multiple stable forms that a sample could ultimately reach, not all of which are useful as fuel.
+
+Commander Lambda has tasked you to help the scientists increase fuel creation efficiency by predicting the end state of a given ore sample. You have carefully studied the different structures that the ore can take and which transitions it undergoes. It appears that, while random, the probability of each structure transforming is fixed. That is, each time the ore is in 1 state, it has the same probabilities of entering the next state (which might be the same state).  You have recorded the observed transitions in a matrix. The others in the lab have hypothesized more exotic forms that the ore can become, but you haven't seen all of them.
+
+Write a function solution(m) that takes an array of array of nonnegative ints representing how many times that state has gone to the next state and return an array of ints for each terminal state giving the exact probabilities of each terminal state, represented as the numerator for each state, then the denominator for all of them at the end and in simplest form. The matrix is at most 10 by 10. It is guaranteed that no matter which state the ore is in, there is a path from that state to a terminal state. That is, the processing will always eventually end in a stable state. The ore starts in state 0. The denominator will fit within a signed 32-bit integer during the calculation, as long as the fraction is simplified regularly.
+  </p>
+</div>
+<div class="explaination">
+  <h3>What is this actually asking?</h3>
+  <p>The talk about a matrix of states and terminating states is a big clue about the underlying concept.
+    We have to use a <a href="https://en.wikipedia.org/wiki/Markov_chain">"Markov Chain"</a> to find the terminating
+    states. Since the constraints of foobar only allow the python2.7.13 standard library, we cannot use numpy to
+    perform the linear algebra. This means we have to roll our own matrix operations.
+  </p>
+  <p>
+    The input is a 2d array of states and the output is
+    1d array of terminal states numerators and the common denominator as the final value.
+    For example, say my output is <code>[1,2,4,7]</code>. The <code>7</code> at the end is the
+    denominator for the states, and the <code>1</code>, <code>2</code>, and <code>4</code> each
+    represent a terminal state.
+    <ul>
+    <li>state 1: 1&frasl;7</li>
+    <li>state 2: 2&frasl;7</li>
+    <li>state 3: 4&frasl;7</li>
+    </ul>
+  </p>
+</div>
+
+<div class="process">
+  <h3>The Steps</h3>
+  <p>
+    This question does't have any big gotchas, so the process is fairly straightforward.
+  </p>
+  <ol>
+    <li>Convert input to standard form.
+      <ol>
+        <li>Find absorbing states</li>
+        <li>Find non-absorbing states</li>
+        <li>Sort values into proper IORQ quadrants.</li>
+      </ol>
+    </li>
+    <li>Find I - Q</li>
+    <li>Invert Q</li>
+    <li>Multiply R by Q</li>
+  </ol>
+
+
+
+
+
+
+  
