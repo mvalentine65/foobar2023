@@ -177,11 +177,6 @@ def invert_matrix(Q):
     return I
 
 
-def gaussian_elimination(matrix):
-    row = 0
-    col = 0
-    m = len(matrix)
-    while row <= m
 
 def multiply_matrix(Q, R):
     output = list()

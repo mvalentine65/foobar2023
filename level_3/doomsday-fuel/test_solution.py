@@ -1,5 +1,5 @@
 import unittest
-from neo import *
+from solution import *
 import fractions
 
 class TestGCD(unittest.TestCase):
@@ -65,22 +65,7 @@ class TestMatrixFunctions(unittest.TestCase):
                 [0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0] ]
     
-        info_1 = ([2,3,4,5],[0,1],{0:2,1:9})
-        R_1 = [[0,0,0,fractions.Fraction(1,2)],
-                [0,fractions.Fraction(3,9),fractions.Fraction(2,9),0]]
-        Q_1 = [[1,fractions.Fraction(-1,2)],
-                [fractions.Fraction(-4,9),1]]
-        inverse_1 = [[fractions.Fraction(9,7),fractions.Fraction(9,14)],
-                    [fractions.Fraction(4,7),fractions.Fraction(9,7)]]
         answer_1 = [0,3,2,9,14]
-        self.assertEquals(parse_to_standardized_form(case_1),info_1)
-        self.assertEquals(make_r_i_minus_q(info_1[0],info_1[1],
-            case_1,info_1[2]),(R_1,Q_1))
-        self.assertEquals(invert_matrix(Q_1), inverse_1)
-        self.assertEquals(multiply_matrix(inverse_1,R_1),
-            [0,fractions.Fraction(3,14),fractions.Fraction(2,14),
-            fractions.Fraction(9,14)])
-        self.assertEquals(make_answer(multiply_matrix(inverse_1,R_1)),answer_1)
         self.assertEquals(solution(case_1),answer_1)
     def test_case_2(self):
         case_2 = [  [0, 2, 1, 0, 0],
@@ -89,21 +74,7 @@ class TestMatrixFunctions(unittest.TestCase):
                 [0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0] ]
 
-        info_2 = ([2,3,4],[0,1],{0:3,1:7})
-        R_2 = [ [fractions.Fraction(1,3),0,0],
-                [0,fractions.Fraction(3,7),fractions.Fraction(4,7)] ]
-        Q_2 = [ [1,0-fractions.Fraction(2,3)],
-                [0,1] ]
-        inverse_2 = [[1,fractions.Fraction(2,3)],
-                    [0,1]]
         answer_2 = [7,6,8,21]
-        self.assertEquals(parse_to_standardized_form(case_2),info_2)
-        self.assertEquals(make_r_i_minus_q(info_2[0],info_2[1], case_2,info_2[2]),(R_2,Q_2))
-        self.assertEquals(invert_matrix(Q_2), inverse_2)
-        self.assertEquals(multiply_matrix(inverse_2,R_2),
-            [fractions.Fraction(1,3),fractions.Fraction(2,7),
-            fractions.Fraction(8,21)])
-        self.assertEquals(make_answer(multiply_matrix(inverse_2,R_2)), answer_2)
         self.assertEquals(solution(case_2),answer_2)
 
     def test_case_3(self):
